@@ -3,6 +3,8 @@
 Neste documento foi utilizado o modelo de dados Entidade-Relacionamento, descrevendo também as entidades e finalizando com o dicionário de dados.
 
 ## Modelo de Dados (Entidade-Relacionamento) 
+## 
+![Modelo Entidade-Relacionamento](images/modelo_entidade_relacionamento.png)
 
 ## Descrição das Entidades
 
