@@ -6,8 +6,8 @@ Plano de Iterações e Plano de Release do app Sig-environment-mark.
 
 Iteração | Data início | Data Final | Apresentação | Gerente   | Detalhes
 -------- | ----------- | ---------- | ------------ | -------   | -------
-It01      | 19/04/20211 | 03/05/2022 |  04/05/2022 |  [Arthur Antony](https://github.com/arthuranthony2000/)  | Criação do primeiro CRUD e documentos do projeto
-It02      |  A definir  |  A definir |  A definir  | A definir | A definir
+It01      | 19/04/2022 | 03/05/2022 |  04/05/2022 |  [Arthur Anthony](https://github.com/arthuranthony2000/)  | Documentos do projeto
+It02      |  03/05/2022  |  A definir |  A definir  | [Adalberto Maia](https://github.com/batbeto/) | Criação do primeiro CRUD
 
 
 ## Plano de Release
