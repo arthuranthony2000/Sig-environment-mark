@@ -12,8 +12,9 @@ Abaixo temos uma breve descrição das entidades que compõe o sistema.
 
 | Entidade | Descrição   |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Ambiente   | A entidade Ambiente possui diversos atributos, dentre eles temos os atributos de dataModificacao, dataReservaInic e dataReservaFim, para definir a data de reserva incial e final e a data que possa existir alguma mudança cadastral, existe também o atributo de tipo e capacidade, onde é definido o tipo de ambiente e sua capacidade que são caracteristicas dos ambientes, assim como participante que define por FK o codigo do usuario que está reservando o ambiente.                                |
-| Usuário   | A entidade usuário é usada para armazenar os dados pessoais e gerenciar permissões de reserva e contatos.                                                              |
+| Evento   | A entidade Evento possui diversos atributos, dentre eles temos os atributos de name, adress e date, para definir a data do evento, nome e endereço do evento, assim como inumeras outras informações que localizão e precificam o evento de forma descritiva.                                |
+| Usuário   | A entidade usuário é usada para armazenar os dados pessoais e gerenciar permissões do usuario para identifica-lo de forma a criar reservas e eventos.                                                              |
+| Order   | A entidade order é usada para armazenar os dados de compra daquele evento, como por exemplo o momento da compra, quem comprou e qual valor, assim como a situação da compra.                              
 
 ## Dicionário de Dados
 
@@ -24,23 +25,34 @@ O dicionário de dados consiste em um conjunto de tabelas que fornecem informaç
 | Atributo  | Chave | Tipo de dado | Tamanho | Descrição                                     |
 | --------- | :---: | :----------: | :-----: | --------------------------------------------- |
 | id        |  PK   |   NUMERIC    |    4    | Identificador incremental de usuário.         |
-| nome      |  NN   | VARCHAR[100] |   100   | Nome real do usuário.                         |
-| username  |  NN   | VARCHAR[16]  |   16    | Nome do usuário no sistema.                   |
-| senha     |  NN   | VARCHAR[256] |   256   | Senha utilizada pelo usuário.                 |
-| dataNasc  |  NN   |     DATE     |    3    | Data formato (XX-XX-XXXX).                    |
+| name      |  NN   | VARCHAR[100] |   100   | Nome real do usuário.                         |
+| pass     |  NN   | VARCHAR[256] |   256   | Senha utilizada pelo usuário.                 |
+| cpf  |  NN   |     VARCHAR[100]     |    100    | Informa o cpf do usuário.                |
 | email     |  NN   | VARCHAR[256] |   256   | Email utilizado pelo usuário.                 |
-| tipo     |  NN   | VARCHAR[256] |   256   | Permissão para reserver as salas.                |
+| UserStatus     |  NN   | ENUM |   3   | Identifica as permissões do usuário.            |
 
-## Tabela - Ambiente
+## Tabela - Evento
 
 | Atributo     | Chave | Tipo de dado | Tamanho | Descrição                                      |
 | ------------ | :---: | :----------: | :-----: | ---------------------------------------------- |
-| id           |  PK   |   NUMERIC    |    4    | Identificador incremental de projeto.          |
-| nome         |  NN   | VARCHAR[100] |   100   | Nome do projeto.                               |
-| descricao    |  NN   | VARCHAR[280] |   280   | Descrição do projeto.                          |
-| dataDeCriacao|  NN   |     DATE     |    3    | Data formato (XX-XX-XXXX).                     |
-| dataReservaInic      |  NN   |     DATE     |    3    | Data formato (XX-XX-XXXX)
-| dataReservaFim      |  NN   |     DATE     |    3    | Data formato (XX-XX-XXXX).                     |
-| tipo      |  NN   |   NUMERIC    |    1    | Chave para diferentes tipos de ambientes.                        |
-|capacidade|  NN   |   NUMERIC    |     4     | Capacidade do ambiente.                                    |
-|participante|  FK   |   NUMERIC    |     4     | Id do usuário que reserva o ambiente.                                    |
+| id           |  PK   |   NUMERIC    |    4    | Identificador incremental de evento.          |
+| name         |  NN   | VARCHAR[100] |   100   | Nome do evento.                               |
+| description    |  NN   | VARCHAR[280] |   280   | Descrição do evento.                          |
+| adress    |  NN   | VARCHAR[280] |   280   | Endereço do evento.                          |
+| latitude    |  NN   | Double |   50   | Informação de latitude do evento.                          |
+| longitude    |  NN   | Double |   50   | Informação de longitude do evento.                          |
+| date |  NN   |     DATE     |    3    | Data formato (XX-XX-XXXX).                     |
+| imageUri      |  NN   |     VARCHAR[100]     |    100    | Armazena informação de local da imagem do evento |
+| price      |  NN   |   NUMERIC    |    10    | Valor monetario do evento.                        |
+| tickets |  NN   |   NUMERIC    |     10     | Capacidade do evento.                                    |
+| status |  FK   |   ENUM    |     4     | Situação atual do evento.                                    |
+
+## Tabela - Order
+
+| Atributo     | Chave | Tipo de dado | Tamanho | Descrição                                      |
+| ------------ | :---: | :----------: | :-----: | ---------------------------------------------- |
+| id           |  PK   |   NUMERIC    |    4    | Identificador incremental da ordem de compra.          |
+| user_id         |  FK   | NUMERIC |   4   | Id do usuário que adquiriu o evento.                               |
+| qtd    |  NN   | NUMERIC |   50   | Quantidade de tickets adquiridos.                          |
+| total    |  NN   | Double |   50   | Valor total da ordem de compra.                          |
+| status |  FK   |   ENUM    |     4     | Situação atual da ordem de compra.                                    |
